@@ -11,7 +11,11 @@
                 <div class="section-header">
                     <h1>{{$title}}</h1>
                 </div>
-
+                @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{session('success')}}</strong>
+                </div>
+                @endif
                 <div class="section-body">
                     @yield('content')
                 </div>

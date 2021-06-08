@@ -17,7 +17,7 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i>
                     <span>Data Master</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">Tani</a></li>
+                    <li><a class="nav-link" href="{{route('farmer.index')}}">Tani</a></li>
                     <li><a class="nav-link" href="#">Kelompok Tani</a></li>
                 </ul>
             </li>
