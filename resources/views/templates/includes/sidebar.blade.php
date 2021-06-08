@@ -22,20 +22,20 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-warehouse fa-fw"></i>
                     <span>Lumbung</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('barn.index')}}">Lumbung</a></li>
                     <li><a class="nav-link" href="#">Pengelola Lumbung</a></li>
                 </ul>
             </li>
-            <li>
-                <a class="nav-link" href="#"><i class="far fa-square"></i>
+            {{-- <li>
+                <a class="nav-link" href="#"><i class="far fa-boxes fa-fw"></i>
                     <span>Cadangan Pangan</span>
                 </a>
-            </li>
+            </li> --}}
             <li>
-                <a class="nav-link" href="blank.html"><i class="far fa-square"></i>
+                <a class="nav-link" href="{{route('foodItem.index')}}"><i class="fas fa-boxes fa-fw"></i>
                     <span>Stok Pangan</span>
                 </a>
             </li>
