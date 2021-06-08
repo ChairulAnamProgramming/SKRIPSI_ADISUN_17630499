@@ -17,7 +17,7 @@ class CreateBarnsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('address');
-            $table->foreignId('farmer_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('farmer_group_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

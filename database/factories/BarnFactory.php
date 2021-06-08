@@ -24,7 +24,7 @@ class BarnFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'address' => $this->faker->address,
-            'farmer_id' => 1,
+            'farmer_group_id' => 2,
         ];
     }
 }

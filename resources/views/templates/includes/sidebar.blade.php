@@ -25,7 +25,7 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i>
                     <span>Lumbung</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">Lumbung</a></li>
+                    <li><a class="nav-link" href="{{route('barn.index')}}">Lumbung</a></li>
                     <li><a class="nav-link" href="#">Pengelola Lumbung</a></li>
                 </ul>
             </li>

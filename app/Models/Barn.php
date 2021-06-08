@@ -12,19 +12,19 @@ class Barn extends Model
     protected $fillable = [
         'name',
         'address',
-        'farmer_id',
+        'farmer_group_id',
     ];
 
 
-    public function farmer()
+    public function farmer_group()
     {
-        return $this->hasOne(Farmer::class, 'id', 'farmer_id');
+        return $this->hasOne(farmerGroup::class, 'id', 'farmer_group_id');
     }
 
-    public function farmers()
-    {
-        return $this->belongsToMany(Farmer::class);
-    }
+    // public function farmers()
+    // {
+    //     return $this->belongsToMany(Farmer::class);
+    // }
 
     public function food_item()
     {
