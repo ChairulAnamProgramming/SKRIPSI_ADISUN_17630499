@@ -18,7 +18,7 @@
                     <span>Data Master</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('farmer.index')}}">Tani</a></li>
-                    <li><a class="nav-link" href="#">Kelompok Tani</a></li>
+                    <li><a class="nav-link" href="{{route('farmerGroup.index')}}">Kelompok Tani</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">

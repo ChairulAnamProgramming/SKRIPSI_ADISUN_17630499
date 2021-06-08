@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Page\FarmerController;
+use App\Http\Controllers\Page\FarmerGroupController;
 use App\Http\Controllers\Pages\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('farmer', FarmerController::class);
+    Route::resource('farmerGroup', FarmerGroupController::class);
 });
