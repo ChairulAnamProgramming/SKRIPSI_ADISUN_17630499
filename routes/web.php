@@ -33,6 +33,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('barn', BarnController::class);
     Route::resource('foodItem', FoodItemController::class);
     Route::get('barnManager', [BarnManagerController::class, 'index'])->name('barnManager.index');
-    Route::get('foodItemByCategories/{id}', [HomeController::class, 'foodItemByCategories'])->name('home.foodItemByCategories');
 });
+Route::get('foodItemByCategories/{id}', [HomeController::class, 'foodItemByCategories'])->name('home.foodItemByCategories');
 Route::get('chart', [ChartController::class, 'index'])->name('chart.index');
