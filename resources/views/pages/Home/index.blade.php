@@ -11,8 +11,11 @@
                 <div class="col-6 col-md-2">
                     <a href="" class="card shadow-none border rounded" style="height: 150px;text-decoration:none">
                         <div class="card-body text-center">
-                            <img src="{{url('public/storage').'/'.$item->image}}" alt="{{$item->name}}"
-                                class="img-fluid d-flex justify-content-center align-items-center">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{url('public/storage').'/'.$item->image}}" alt="{{$item->name}}"
+                                    class="img-fluid d-flex justify-content-center align-items-center text-center"
+                                    width="80%">
+                            </div>
                             <small>{{$item->name}}</small>
                         </div>
                     </a>
