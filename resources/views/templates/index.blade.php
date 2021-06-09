@@ -8,9 +8,12 @@
         <!-- Main Content -->
         <div class="main-content">
             <section class="section">
+                @if ($title ==='')
+                @else
                 <div class="section-header">
                     <h1>{{$title}}</h1>
                 </div>
+                @endif
                 @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     <strong>{{session('success')}}</strong>

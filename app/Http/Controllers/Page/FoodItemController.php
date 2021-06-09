@@ -80,7 +80,7 @@ class FoodItemController extends Controller
      */
     public function show(FoodItem $foodItem)
     {
-        $data['title'] = 'Detail Pangan ' . $foodItem->title;
+        $data['title'] = '';
         $data['foodItem'] = FoodItem::with(['barn', 'food_category'])->where('id', $foodItem->id)->first();
         return view('pages.Stok-Pangan.show', $data);
     }
@@ -93,7 +93,11 @@ class FoodItemController extends Controller
      */
     public function edit(FoodItem $foodItem)
     {
-        //
+        $data['title'] = 'Edit Data ' . $foodItem->title;
+        $data['foodItem'] = FoodItem::with(['barn', 'food_category'])->where('id', $foodItem->id)->first();
+        $data['foodCategories'] = FoodCategory::orderBy('name', 'ASC')->get();
+        $data['barns'] = Barn::all();
+        return view('pages.Stok-Pangan.edit', $data);
     }
 
     /**
@@ -105,7 +109,34 @@ class FoodItemController extends Controller
      */
     public function update(Request $request, FoodItem $foodItem)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'food_category_id' => 'required|string',
+            'stock' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|string',
+            'barn_id' => 'required|string',
+        ]);
+
+        if ($request->file('image')) :
+            $image = $request->file('image')->store('assets/FoodItems', 'public');
+        else :
+            $image = $foodItem->image;
+        endif;
+
+        $fi = FoodItem::where('id', $foodItem->id)->update([
+            'title' => $request->title,
+            'food_category_id' => $request->food_category_id,
+            'stock' => $request->stock,
+            'description' => $request->description,
+            'price' => $request->price,
+            'barn_id' => $request->barn_id,
+            'image' => $image,
+        ]);
+
+        if ($fi) :
+            return redirect()->back()->with('success', 'Stok Barang Berhasil di Update.');
+        endif;
     }
 
     /**
