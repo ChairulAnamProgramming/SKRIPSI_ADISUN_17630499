@@ -76,25 +76,33 @@
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                <img class="rounded-circle mr-1" src="{{ Auth::user()->profile_photo_url }}"
+                    alt="{{ Auth::user()->name }}" />
+                @else
                 <img alt="image" src="{{url('public/templates/1')}}/assets/img/avatar/avatar-1.png"
                     class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                @endif
+                <div class="d-sm-none d-lg-inline-block">{{Auth::user()?'Hallo, '. Auth::user()->name:'Hallo, User'}}
+                </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
+                <div class="dropdown-title"></div>
+                @if (Auth::user())
+                <a href="{{ route('profile.show') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
+                @endif
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <!-- Authentication -->
+                @if (Auth::user())
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="dropdown-item  text-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+                @endif
             </div>
         </li>
     </ul>

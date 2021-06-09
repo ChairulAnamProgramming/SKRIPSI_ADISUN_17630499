@@ -13,6 +13,8 @@
             <li class="nav-item {{$title === 'Beranda'?'active':''}}">
                 <a href="{{route('home')}}" class="nav-link "><i class="fas fa-home"></i><span>Beranda</span></a>
             </li>
+            @if (Auth::user())
+            @if (Auth::user()->role === 'admin')
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i>
                     <span>Data Master</span></a>
@@ -33,6 +35,8 @@
                     <li><a class="nav-link" href="{{route('barnManager.index')}}">Pengelola Lumbung</a></li>
                 </ul>
             </li>
+            @endif
+            @endif
             {{-- <li>
                 <a class="nav-link" href="#"><i class="far fa-boxes fa-fw"></i>
                     <span>Cadangan Pangan</span>
@@ -41,6 +45,7 @@
             <li>
                 <a class="nav-link" href="{{route('foodItem.index')}}"><i class="fas fa-boxes fa-fw"></i>
                     <span>Stok Pangan</span>
+                    <i class="{{!Auth::user()?'fas fa-lock fa-fw text-warning':''}}"></i>
                 </a>
             </li>
             <li>
@@ -51,9 +56,18 @@
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="{{route('chart.index')}}" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-sign-out-alt"></i> Keluar
+            @if (Auth::user())
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="btn btn-primary btn-lg btn-block btn-icon-split">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+            @else
+            <a href="{{route('login')}}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-sign-in-alt"></i> Login
             </a>
+            @endif
         </div>
     </aside>
 </div>
