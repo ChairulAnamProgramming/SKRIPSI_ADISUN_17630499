@@ -43,6 +43,11 @@
                     <span>Stok Pangan</span>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="{{route('foodItem.index')}}"><i class="fas fa-chart-bar fa-fw"></i>
+                    <span>Grapik</span>
+                </a>
+            </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
