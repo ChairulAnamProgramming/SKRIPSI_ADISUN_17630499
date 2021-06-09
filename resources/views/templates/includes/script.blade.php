@@ -12,6 +12,7 @@
 <!-- Template JS File -->
 <script src="{{url('public/templates/1')}}/assets/js/scripts.js"></script>
 <script src="{{url('public/templates/1')}}/assets/js/custom.js"></script>
+
 <script>
     $(document).ready(function() {
     $('.datatable').DataTable({
@@ -21,3 +22,5 @@
     });
 } );
 </script>
+
+@stack('end-script')

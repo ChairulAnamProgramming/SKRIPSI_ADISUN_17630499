@@ -44,14 +44,14 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="{{route('foodItem.index')}}"><i class="fas fa-chart-bar fa-fw"></i>
+                <a class="nav-link" href="{{route('chart.index')}}"><i class="fas fa-chart-bar fa-fw"></i>
                     <span>Grapik</span>
                 </a>
             </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a href="{{route('chart.index')}}" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-sign-out-alt"></i> Keluar
             </a>
         </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Page\BarnManagerController;
 use App\Http\Controllers\Page\FarmerController;
 use App\Http\Controllers\Page\FarmerGroupController;
 use App\Http\Controllers\Page\FoodItemController;
+use App\Http\Controllers\Pages\ChartController;
 use App\Http\Controllers\Pages\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('foodItem', FoodItemController::class);
     Route::get('barnManager', [BarnManagerController::class, 'index'])->name('barnManager.index');
     Route::get('foodItemByCategories/{id}', [HomeController::class, 'foodItemByCategories'])->name('home.foodItemByCategories');
+    Route::get('chart', [ChartController::class, 'index'])->name('chart.index');
 });
