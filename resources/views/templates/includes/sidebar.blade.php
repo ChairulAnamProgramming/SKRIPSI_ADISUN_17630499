@@ -10,23 +10,27 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Menu Utama</li>
-            <li class="nav-item active">
-                <a href="#" class="nav-link "><i class="fas fa-home"></i><span>Beranda</span></a>
+            <li class="nav-item {{$title === 'Beranda'?'active':''}}">
+                <a href="{{route('home')}}" class="nav-link "><i class="fas fa-home"></i><span>Beranda</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i>
                     <span>Data Master</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('farmer.index')}}">Tani</a></li>
-                    <li><a class="nav-link" href="{{route('farmerGroup.index')}}">Kelompok Tani</a></li>
                 </ul>
+            </li>
+            <li>
+                <a class="nav-link" href="{{route('farmerGroup.index')}}"><i class="fas fa-users fa-fw"></i>
+                    <span>Kelompok Tani</span>
+                </a>
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-warehouse fa-fw"></i>
                     <span>Lumbung</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('barn.index')}}">Lumbung</a></li>
-                    <li><a class="nav-link" href="#">Pengelola Lumbung</a></li>
+                    <li><a class="nav-link" href="{{route('barnManager.index')}}">Pengelola Lumbung</a></li>
                 </ul>
             </li>
             {{-- <li>

@@ -26,8 +26,8 @@ class Barn extends Model
     //     return $this->belongsToMany(Farmer::class);
     // }
 
-    public function food_item()
+    public function food_items()
     {
-        return $this->hasOne(FoodItem::class, 'farmer_id', 'id');
+        return $this->hasMany(FoodItem::class, 'barn_id', 'id');
     }
 }

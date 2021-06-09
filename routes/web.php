@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Page\BarnController;
+use App\Http\Controllers\Page\BarnManagerController;
 use App\Http\Controllers\Page\FarmerController;
 use App\Http\Controllers\Page\FarmerGroupController;
 use App\Http\Controllers\Page\FoodItemController;
@@ -30,4 +31,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('farmerGroup', FarmerGroupController::class);
     Route::resource('barn', BarnController::class);
     Route::resource('foodItem', FoodItemController::class);
+    Route::get('barnManager', [BarnManagerController::class, 'index'])->name('barnManager.index');
 });

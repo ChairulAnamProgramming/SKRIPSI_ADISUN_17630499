@@ -80,7 +80,9 @@ class FoodItemController extends Controller
      */
     public function show(FoodItem $foodItem)
     {
-        //
+        $data['title'] = 'Detail Pangan ' . $foodItem->title;
+        $data['foodItem'] = FoodItem::with(['barn', 'food_category'])->where('id', $foodItem->id)->first();
+        return view('pages.Stok-Pangan.show', $data);
     }
 
     /**

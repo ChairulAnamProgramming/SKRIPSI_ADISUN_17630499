@@ -109,6 +109,7 @@
                                 <td>No</td>
                                 <td>Opsi</td>
                                 <td>Title Pangan</td>
+                                <td>Kategori</td>
                                 <td>Nama Lumbung</td>
                                 <td>Stok</td>
                                 <td>Deskripsi</td>
@@ -134,11 +135,16 @@
                                 </td>
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->barn->name}}</td>
+                                <td class="text-center">
+                                    <img src="{{url('public/storage').'/'.$item->food_category->image}}"
+                                        alt="{{$item->food_category->name}}" class="img-fluid" width="50">
+                                    <span>{{$item->food_category->name}}</span>
+                                </td>
                                 <td>{{$item->stock}}</td>
                                 <td>{{$item->description}}</td>
                                 <td>Rp.{{number_format($item->price,2,',','.')}}</td>
                                 <td><img src="{{url('public/storage').'/'.$item->image}}" alt="{{$item->title}}"
-                                        class="img-fluid rounded-circle" width="60"></td>
+                                        class="img-fluid rounded" style="width: 60px,height:60px"></td>
                             </tr>
                             @endforeach
                         </tbody>
