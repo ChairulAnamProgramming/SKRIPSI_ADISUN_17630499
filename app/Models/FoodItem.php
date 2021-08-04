@@ -28,4 +28,9 @@ class FoodItem extends Model
     {
         return $this->hasOne(Barn::class, 'id', 'barn_id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

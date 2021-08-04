@@ -13,27 +13,55 @@
             <li class="nav-item {{$title === 'Beranda'?'active':''}}">
                 <a href="{{route('home')}}" class="nav-link "><i class="fas fa-home"></i><span>Beranda</span></a>
             </li>
+
             @if (Auth::user())
+            @if (Auth::user()->role === 'user')
+            @php
+            $cartProses = App\Models\Cart::where('user_id',Auth::user()->id)->where('status','proses')->count();
+            $cartBerhasil = App\Models\Cart::where('user_id',Auth::user()->id)->where('status','berhasil')->count();
+            @endphp
+            <li class="nav-item {{$title === 'cart'?'active':''}}">
+                <a href="{{route('cart.index')}}" class="nav-link "><i class="fas fa-shopping-basket"></i>
+                    <span>Keranjang</span>
+                    @if ($cartProses)
+                    <small class="badge badge-danger">{{$cartProses}}</small>
+                    @endif
+                </a>
+            </li>
+            <li class="nav-item {{$title === 'checkout'?'active':''}}">
+                <a href="{{route('checkout.index')}}" class="nav-link "><i class="fas fa-shipping-fast"></i>
+                    <span>Pesanan</span>
+                    @if ($cartBerhasil)
+                    <small class="badge badge-danger">{{$cartBerhasil}}</small>
+                    @endif
+                </a>
+            </li>
+            @endif
             @if (Auth::user()->role === 'admin')
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i>
                     <span>Data Master</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('farmer.index')}}">Tani</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="nav-link" href="{{route('farmerGroup.index')}}"><i class="fas fa-users fa-fw"></i>
-                    <span>Kelompok Tani</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-warehouse fa-fw"></i>
-                    <span>Lumbung</span></a>
-                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{route('farmerGroup.index')}}"></i>
+                            <span>Kelompok Tani</span>
+                        </a>
+                    </li>
                     <li><a class="nav-link" href="{{route('barn.index')}}">Lumbung</a></li>
                     <li><a class="nav-link" href="{{route('barnManager.index')}}">Pengelola Lumbung</a></li>
                 </ul>
+            </li>
+            @php
+            $cartBerhasilAdmin = App\Models\Cart::where('status','berhasil')->count();
+            @endphp
+            <li class="nav-item {{$title === 'Pesanan User'?'active':''}}">
+                <a href="{{route('checkout.admin')}}" class="nav-link "><i class="fas fa-shipping-fast"></i>
+                    <span>Pesanan Pelanggan</span>
+                    @if ($cartBerhasilAdmin)
+                    <small class="badge badge-danger">{{$cartBerhasilAdmin}}</small>
+                    @endif
+                </a>
             </li>
             @endif
             @endif
@@ -53,6 +81,16 @@
                     <span>Grapik</span>
                 </a>
             </li>
+            @if (Auth::user())
+            @if (Auth::user()->role === 'admin')
+            <li>
+                <a class="nav-link" href="{{route('report.index')}}">
+                    <i class="fas fa-file-alt fa-fw"></i>
+                    <span>Report</span>
+                </a>
+            </li>
+            @endif
+            @endif
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

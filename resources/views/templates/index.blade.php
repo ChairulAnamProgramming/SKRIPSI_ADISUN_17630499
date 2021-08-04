@@ -19,6 +19,11 @@
                     <strong>{{session('success')}}</strong>
                 </div>
                 @endif
+                @if (session('danger'))
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{session('danger')}}</strong>
+                </div>
+                @endif
                 <div class="section-body">
                     @yield('content')
                 </div>

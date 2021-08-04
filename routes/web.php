@@ -5,8 +5,11 @@ use App\Http\Controllers\Page\BarnManagerController;
 use App\Http\Controllers\Page\FarmerController;
 use App\Http\Controllers\Page\FarmerGroupController;
 use App\Http\Controllers\Page\FoodItemController;
+use App\Http\Controllers\Pages\CartController;
 use App\Http\Controllers\Pages\ChartController;
+use App\Http\Controllers\Pages\CheckoutController;
 use App\Http\Controllers\Pages\HomeController;
+use App\Http\Controllers\Pages\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +35,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('farmerGroup', FarmerGroupController::class);
     Route::resource('barn', BarnController::class);
     Route::resource('foodItem', FoodItemController::class);
+    Route::resource('cart', CartController::class);
+    Route::resource('checkout', CheckoutController::class);
+    Route::get('checkout-admin', [CheckoutController::class, 'admin'])->name('checkout.admin');
     Route::get('barnManager', [BarnManagerController::class, 'index'])->name('barnManager.index');
+    Route::get('report', [ReportController::class, 'index'])->name('report.index');
 });
 Route::get('foodItemByCategories/{id}', [HomeController::class, 'foodItemByCategories'])->name('home.foodItemByCategories');
 Route::get('chart', [ChartController::class, 'index'])->name('chart.index');
