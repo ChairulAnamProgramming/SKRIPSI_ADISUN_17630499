@@ -70,6 +70,8 @@
                                 Don't have an account? <a href="auth-register.html">Create new one</a>
                             </div> --}}
                         </form>
+                        <a href="{{route('register')}}" class="text-decoration-none text-center">Belum punya akun? Klik
+                            disini</a>
 
                         <div class="text-center mt-5 text-small">
                             Copyright &copy; DINAS KETAHANAN PANGAN HSS
