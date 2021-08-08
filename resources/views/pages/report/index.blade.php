@@ -44,8 +44,25 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="text-decoration-none text-primary">
-                                    Report Kelompok Tani Terdaftar 1 bulan Terakhit
+                                <a href="#" class="text-decoration-none text-primary" data-toggle="modal"
+                                    data-target="#modalPesananPanganBelumDiTerimaUser">
+                                    Report Pesanan Belum di Terima User
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-decoration-none text-primary" data-toggle="modal"
+                                    data-target="#modalPesananBelumDiKonfirmasi">
+                                    Report Pesanan Belum di Konfirmasi
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <ul>
+                            <li>
+                                <a href="#" class="text-decoration-none text-primary" data-toggle="modal"
+                                    data-target="#modalPesananMasihDiKeranjangUser">
+                                    Report Pesanan Masih Di Keranjang User
                                 </a>
                             </li>
                         </ul>

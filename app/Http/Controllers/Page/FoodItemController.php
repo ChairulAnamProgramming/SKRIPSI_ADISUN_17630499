@@ -7,6 +7,7 @@ use App\Models\Barn;
 use App\Models\FoodCategory;
 use App\Models\FoodItem;
 use Illuminate\Http\Request;
+use File;
 
 class FoodItemController extends Controller
 {
@@ -147,6 +148,13 @@ class FoodItemController extends Controller
      */
     public function destroy(FoodItem $foodItem)
     {
-        //
+        if ($foodItem->image !== 'default.png') :
+            File::delete('public/' . $foodItem->image);
+        endif;
+
+        $foodItem->delete();
+        if ($foodItem) :
+            return redirect()->back()->with('success', 'Stok Barang Berhasil di hapus.');
+        endif;
     }
 }

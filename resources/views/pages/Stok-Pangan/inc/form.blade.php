@@ -1,8 +1,11 @@
-<form action="{{@$foodItem ?route('foodItem.update',$foodItem->id):route('foodItem.store')}}" method="POST"
-    enctype="multipart/form-data">
+<form id="form-food-item" action="{{@$foodItem ?route('foodItem.update',$foodItem->id):route('foodItem.store')}}"
+    method="POST" enctype="multipart/form-data">
     <div class="card">
         <div class="card-body">
             @csrf
+
+            <div id="method-food-item"></div>
+
             @if (@$foodItem)
             @method('PATCH')
             @endif
@@ -84,6 +87,7 @@
                 @if (@$foodItem->id)
                 <span class="text-warning">Tidak usah di isi jika tidak ingin merubah gambar</span>
                 @endif
+                <span id="alert-img-patch"></span>
                 @error('image')
                 <strong>
                     <span class="text-danger">{{$message}}</span>

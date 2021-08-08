@@ -104,4 +104,46 @@ class ReportController extends Controller
 
         return view('pages.report.pages.pesanan-pangan-terbanyak', $data);
     }
+
+    public function pesananPanganBelumDiTerima(Request $request)
+    {
+
+        $data['title'] = 'Laporan Pesanan Pangan Belum Di Terima User Bulan ' . date('F', strtotime($request->bulan));
+
+        $data['carts'] = Cart::with('foodItem')
+            ->where('status', 'dikirim')
+            ->whereYear('created_at', date('Y', strtotime($request->bulan)))
+            ->whereMonth('created_at', date('m', strtotime($request->bulan)))
+            ->get();
+
+        return view('pages.report.pages.pesanan-pangan-belum-diterima', $data);
+    }
+
+    public function pesananPanganBelumDiKonfirmasi(Request $request)
+    {
+
+        $data['title'] = 'Laporan Pesanan Pangan Belum Di Konfirmasi Bulan ' . date('F', strtotime($request->bulan));
+
+        $data['carts'] = Cart::with('foodItem')
+            ->where('status', 'berhasil')
+            ->whereYear('created_at', date('Y', strtotime($request->bulan)))
+            ->whereMonth('created_at', date('m', strtotime($request->bulan)))
+            ->get();
+
+        return view('pages.report.pages.pesanan-pangan-belum-dikonfirmasi', $data);
+    }
+
+    public function pesananMasihDiKeranjang(Request $request)
+    {
+
+        $data['title'] = 'Laporan Pesanan Masih Di Keranjang User Bulan ' . date('F', strtotime($request->bulan));
+
+        $data['carts'] = Cart::with('foodItem')
+            ->where('status', 'proses')
+            ->whereYear('created_at', date('Y', strtotime($request->bulan)))
+            ->whereMonth('created_at', date('m', strtotime($request->bulan)))
+            ->get();
+
+        return view('pages.report.pages.pesanan-masih-di-keranjang', $data);
+    }
 }

@@ -49,6 +49,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('report/pesanan', [ReportController::class, 'pesanan'])->name('report.pesanan');
     Route::post('report/pengelola-lumbung', [ReportController::class, 'pengelolaLumbung'])->name('report.pengelola-lumbung');
     Route::post('report/pesanan-pangan-terbanyak', [ReportController::class, 'pesananPanganTerbanyak'])->name('report.pesanan-pangan-terbanyak');
+    Route::post('report/pesanan-pangan-belum-diterima-user', [ReportController::class, 'pesananPanganBelumDiTerima'])->name('report.pesanan-pangan-belum-diterima-user');
+    Route::post('report/pesanan-pangan-belum-di-konfirmasi', [ReportController::class, 'pesananPanganBelumDiKonfirmasi'])->name('report.pesanan-pangan-belum-di-konfirmasi');
+    Route::post('report/pesanan-masih-di-keranjang', [ReportController::class, 'pesananMasihDiKeranjang'])->name('report.pesanan-masih-di-keranjang');
 });
 Route::get('foodItemByCategories/{id}', [HomeController::class, 'foodItemByCategories'])->name('home.foodItemByCategories');
 Route::get('chart', [ChartController::class, 'index'])->name('chart.index');

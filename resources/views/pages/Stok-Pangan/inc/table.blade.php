@@ -18,11 +18,20 @@
             <td>{{$loop->iteration}}</td>
             <td>
                 <div class="btn-group">
-                    <button class="btn btn-light  btn-sm text-danger btn-icon icon-left">
-                        <i class="fas fa-trash fa-f"></i>
-                        Hapus
-                    </button>
-                    <button class="btn btn-light btn-sm text-warning btn-icon icon-left">
+                    <form action="{{route('foodItem.destroy',$item->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');"
+                            class="btn btn-light  btn-sm text-danger btn-icon icon-left">
+                            <i class="fas fa-trash fa-f"></i>
+                            Hapus
+                        </button>
+                    </form>
+                    <button class="btn btn-light btn-sm text-warning btn-icon icon-left btn-edit"
+                        data-url="{{route('foodItem.update',$item->id)}}" data-title="{{$item->title}}"
+                        data-category="{{$item->food_category_id}}" data-stok="{{$item->stock}}"
+                        data-description="{{$item->description}}" data-price="{{$item->price}}"
+                        data-barn="{{$item->barn_id}}">
                         <i class="fas fa-edit fa-fw"></i>
                         Edit
                     </button>

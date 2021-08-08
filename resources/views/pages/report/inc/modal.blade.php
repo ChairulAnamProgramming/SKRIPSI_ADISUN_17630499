@@ -193,3 +193,90 @@
         </div>
     </div>
 </div>
+<!-- Pesanan Pangan Belum Di Terima User -->
+<div class="modal fade" id="modalPesananPanganBelumDiTerimaUser" tabindex="-1" role="dialog"
+    aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{route('report.pesanan-pangan-belum-diterima-user')}}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Report Pesanan Pangan Belum di Terima User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="bulan">Bulan</label>
+                        <input type="month" name="bulan" id="bulan" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-print fa-fw"></i>
+                        Cetak
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Pesanan Pangan Belum Di Terima User -->
+<div class="modal fade" id="modalPesananBelumDiKonfirmasi" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{route('report.pesanan-pangan-belum-di-konfirmasi')}}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Report Pesanan Pangan Belum Dikonfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="bulan">Bulan</label>
+                        <input type="month" name="bulan" id="bulan" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-print fa-fw"></i>
+                        Cetak
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Pesanan Pangan Masih DI Kernjang User -->
+<div class="modal fade" id="modalPesananMasihDiKeranjangUser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{route('report.pesanan-masih-di-keranjang')}}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Report Pesanan Masih Di Keranjang User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="bulan">Bulan</label>
+                        <input type="month" name="bulan" id="bulan" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-print fa-fw"></i>
+                        Cetak
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
