@@ -39,7 +39,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('checkout', CheckoutController::class);
     Route::get('checkout-admin', [CheckoutController::class, 'admin'])->name('checkout.admin');
     Route::get('barnManager', [BarnManagerController::class, 'index'])->name('barnManager.index');
+
+
+    // REPORT
     Route::get('report', [ReportController::class, 'index'])->name('report.index');
+    Route::post('report/stok-pangan', [ReportController::class, 'stokPangan'])->name('report.stok-pangan');
+    Route::post('report/stok-pangan-perlumbung', [ReportController::class, 'stokPanganPerlumbung'])->name('report.stok-pangan-perlumbung');
+    Route::post('report/pesanan-user', [ReportController::class, 'pesananUser'])->name('report.pesanan-user');
+    Route::post('report/pesanan', [ReportController::class, 'pesanan'])->name('report.pesanan');
+    Route::post('report/pengelola-lumbung', [ReportController::class, 'pengelolaLumbung'])->name('report.pengelola-lumbung');
+    Route::post('report/pesanan-pangan-terbanyak', [ReportController::class, 'pesananPanganTerbanyak'])->name('report.pesanan-pangan-terbanyak');
 });
 Route::get('foodItemByCategories/{id}', [HomeController::class, 'foodItemByCategories'])->name('home.foodItemByCategories');
 Route::get('chart', [ChartController::class, 'index'])->name('chart.index');

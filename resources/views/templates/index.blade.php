@@ -33,6 +33,7 @@
     </div>
 </div>
 @include('templates.includes.script')
+
 <!-- Page Specific JS File -->
 </body>
 
