@@ -4,10 +4,11 @@
 
 <div class="row">
     <div class="col-12 col-md-4">
-        <form action="{{route('farmer.store')}}" method="POST">
+        <form id="form" action="{{route('farmer.store')}}" method="POST">
             <div class="card">
                 <div class="card-body">
                     @csrf
+                    <input type="hidden" id="method">
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" value="{{old('name')}}" required name="name" id="name"
@@ -77,10 +78,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="username">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" value="{{old('username')}}" required name="username"
-                            id="username" placeholder="Tulis Username Tidak Boleh Pakai Spasi">
+                            placeholder="Tulis Username Tidak Boleh Pakai Spasi">
                         @error('username')
                         <strong>
                             <span class="text-danger">{{$message}}</span>
@@ -119,21 +120,32 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-light  btn-sm text-danger btn-icon icon-left">
-                                            <i class="fas fa-trash fa-f"></i>
-                                            Hapus
-                                        </button>
-                                        <button class="btn btn-light btn-sm text-warning btn-icon icon-left">
+                                        <button class="btn btn-light btn-sm text-warning btn-icon icon-left btn-edit"
+                                            data-name="{{$item->user->name}}" data-nik="{{$item->nik}}"
+                                            data-address="{{$item->address}}" data-phone="{{$item->phone}}"
+                                            data-place_of_birth="{{$item->place_of_birth}}"
+                                            data-url="{{route('farmer.update',$item->id)}}"
+                                            data-date_of_birth="{{$item->date_of_birth}}">
                                             <i class="fas fa-edit fa-fw"></i>
                                             Edit
                                         </button>
+                                        <form action="{{route('farmer.destroy',$item->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"
+                                                class="btn btn-light  btn-sm text-danger btn-icon icon-left">
+                                                <i class="fas fa-trash fa-f"></i>
+                                                Hapus
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                                 <td>{{$item->user->name}}</td>
                                 <td>{{$item->nik}}</td>
                                 <td>{{$item->address}}</td>
                                 <td>{{$item->phone}}</td>
-                                <td>{{$item->place_of_birth}}</td>
+                                <td>{{$item->place_of_birth.','.date('d-m-Y',strtotime($item->date_of_birth))}}</td>
                                 <td>{{$item->user->username}}</td>
                             </tr>
                             @endforeach
@@ -144,5 +156,34 @@
         </div>
     </div>
 </div>
+
+@push('end-script')
+<script>
+    $('.btn-edit').on('click',function(){
+    const name = $(this).data('name');
+    const nik = $(this).data('nik');
+    const address = $(this).data('address');
+    const phone = $(this).data('phone');
+    const date_of_birth = $(this).data('date_of_birth');
+    const place_of_birth = $(this).data('place_of_birth');
+    const url = $(this).data('url');
+    
+    
+    $('#name').val(name);
+    $('#username').remove();
+    $('#nik').val(nik);
+    $('#address').val(address);
+    $('#phone').val(phone);
+    $('#date_of_birth').val(date_of_birth);
+    $('#place_of_birth').val(place_of_birth);
+    $('#form').attr('action',url);
+    $('#method').val('PATCH');
+    $('#method').attr('name','_method');
+
+})
+</script>
+
+@endpush
+
 
 @endsection

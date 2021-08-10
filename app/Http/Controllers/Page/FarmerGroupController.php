@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Models\Farmer;
-use App\Models\FarmerGroup;
+use App\Models\farmerGroup;
 use Illuminate\Http\Request;
 
 class FarmerGroupController extends Controller
@@ -93,7 +93,23 @@ class FarmerGroupController extends Controller
      */
     public function update(Request $request, FarmerGroup $farmerGroup)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'chairman' => 'required',
+        ]);
+
+        $farmerGroup->update([
+            'farmer_id' => $request->chairman,
+            'name' => $request->name,
+            'address' => $request->address,
+        ]);
+
+        if ($farmerGroup) :
+            $farmerGroup->farmers()->sync($request->farmer_id);
+        endif;
+
+        return redirect()->route('farmerGroup.index')->with('success', 'Data kelompok tani berhasil di simpan.');
     }
 
     /**

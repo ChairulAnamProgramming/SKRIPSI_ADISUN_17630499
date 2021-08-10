@@ -104,7 +104,33 @@ class FarmerController extends Controller
      */
     public function update(Request $request, Farmer $farmer)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:20',
+            'address' => 'required|string',
+            'phone' => 'required',
+            'place_of_birth' => 'required',
+            'date_of_birth' => 'required',
+        ]);
+
+        $user = User::find($farmer->user_id);
+        $user->update([
+            'name' => $request->name,
+        ]);
+
+        if ($user) :
+            $farmer->update([
+                'nik' => $request->nik,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'place_of_birth' => $request->place_of_birth,
+                'date_of_birth' => $request->date_of_birth,
+            ]);
+        endif;
+
+        if ($farmer) :
+            return redirect()->back()->with('success', 'Data tani berhasil di update.');
+        endif;
     }
 
     /**
@@ -115,6 +141,9 @@ class FarmerController extends Controller
      */
     public function destroy(Farmer $farmer)
     {
-        //
+        $farmer->user->delete();
+        if ($farmer) :
+            return redirect()->back()->with('success', 'Data tani berhasil di hapus.');
+        endif;
     }
 }

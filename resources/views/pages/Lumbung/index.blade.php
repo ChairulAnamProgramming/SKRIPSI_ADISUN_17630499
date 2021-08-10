@@ -4,10 +4,11 @@
 
 <div class="row">
     <div class="col-12 col-md-4">
-        <form action="{{route('barn.store')}}" method="POST">
+        <form id="form" action="{{route('barn.store')}}" method="POST">
             <div class="card">
                 <div class="card-body">
                     @csrf
+                    <input type="hidden" id="method">
                     <div class="form-group">
                         <label for="name">Nama Lumbung</label>
                         <input type="text" class="form-control" value="{{old('name')}}" required name="name" id="name"
@@ -46,8 +47,10 @@
 
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary btn-block"><i class="fas fa-save fa-fw"></i> Simpan Data
-                        Kelompok Tani</button>
+                    <button class="btn btn-primary btn-block"><i class="fas fa-save fa-fw"></i>
+                        Simpan Data
+                        Lumbung
+                    </button>
                 </div>
             </div>
         </form>
@@ -72,6 +75,13 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>
                                     <div class="btn-group">
+                                        <button class="btn btn-light btn-sm text-warning btn-icon icon-left btn-edit"
+                                            data-url="{{route('barn.update',$item->id)}}" data-name="{{$item->name}}"
+                                            data-address="{{$item->address}}"
+                                            data-farmer_group="{{$item->farmer_group->id}}">
+                                            <i class="fas fa-edit fa-fw"></i>
+                                            Edit
+                                        </button>
                                         <form action="{{route('barn.destroy',$item->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -82,10 +92,6 @@
                                                 Hapus
                                             </button>
                                         </form>
-                                        <button class="btn btn-light btn-sm text-warning btn-icon icon-left">
-                                            <i class="fas fa-edit fa-fw"></i>
-                                            Edit
-                                        </button>
                                     </div>
                                 </td>
                                 <td>{{$item->name}}</td>
@@ -100,5 +106,27 @@
         </div>
     </div>
 </div>
+
+
+@push('end-script')
+<script>
+    $('.btn-edit').on('click',function(){
+    const name = $(this).data('name');
+    const farmer_group = $(this).data('farmer_group');
+    const address = $(this).data('address');
+    const url = $(this).data('url');
+    
+    
+    $('#name').val(name);
+    $('#farmer_group_id').val(farmer_group);
+    $('#address').val(address);
+    $('#form').attr('action',url);
+    $('#method').val('PATCH');
+    $('#method').attr('name','_method');
+
+})
+</script>
+
+@endpush
 
 @endsection

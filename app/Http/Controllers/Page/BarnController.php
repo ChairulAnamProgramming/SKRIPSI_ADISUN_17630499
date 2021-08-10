@@ -88,7 +88,21 @@ class BarnController extends Controller
      */
     public function update(Request $request, Barn $barn)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'address' => 'required|string',
+            'farmer_group_id' => 'required|string',
+        ]);
+
+        $barn->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'farmer_group_id' => $request->farmer_group_id,
+        ]);
+
+        if ($barn) :
+            return redirect()->route('barn.index')->with('success', 'Data lumbung berhasil di update.');
+        endif;
     }
 
     /**
