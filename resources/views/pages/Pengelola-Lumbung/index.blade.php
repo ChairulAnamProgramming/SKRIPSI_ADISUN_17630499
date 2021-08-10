@@ -11,7 +11,6 @@
                         <thead>
                             <tr>
                                 <td>No</td>
-                                <td>Opsi</td>
                                 <td>Nama Pengelola</td>
                                 <td>Alamat</td>
                                 <td>Jumlah Stok</td>
@@ -22,18 +21,6 @@
                             @foreach ($barns as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-light  btn-sm text-danger btn-icon icon-left">
-                                            <i class="fas fa-trash fa-f"></i>
-                                            Hapus
-                                        </button>
-                                        <button class="btn btn-light btn-sm text-warning btn-icon icon-left">
-                                            <i class="fas fa-edit fa-fw"></i>
-                                            Edit
-                                        </button>
-                                    </div>
-                                </td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->address}}</td>
                                 <td>

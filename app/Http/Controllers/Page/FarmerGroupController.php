@@ -104,6 +104,7 @@ class FarmerGroupController extends Controller
      */
     public function destroy(FarmerGroup $farmerGroup)
     {
-        //
+        $farmerGroup->delete();
+        return redirect()->route('farmerGroup.index')->with('success', 'Data kelompok tani berhasil di hapus.');
     }
 }

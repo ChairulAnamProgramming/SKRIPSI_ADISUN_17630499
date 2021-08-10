@@ -21,15 +21,25 @@
 <body>
 
 
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="text-center">{{$title}}</h4>
+    <div class="container mt-5 bg-white py-3">
+
+        <div class="row">
+            <div class="col-2 text-right">
+                <img src="{{url('public/assets/images/logos/hss.png')}}" class="img-fluid" width="80">
             </div>
-            <div class="card-body">
-                @yield('content')
+            <div class="col-8 text-center">
+                <h5>PEMERINTAH KABUPATEN HULU SUNGAI SELATAN</h5>
+                <h5>DINAS KETAHANAN PANGAN</h5>
+                <small>Jalan Kamboja No.15 Telp./Fax.(0517) 21370</small>
+                <small>Email: dinasketahananpangan.kabhss@gmail.com</small>
+                <h6>KANDANGAN 71212</h6>
             </div>
+            <div class="col-2"></div>
         </div>
+        <hr>
+        <h6 class="text-center mb-3">{{$title}}</h6>
+        @yield('content')
+
     </div>
 
 

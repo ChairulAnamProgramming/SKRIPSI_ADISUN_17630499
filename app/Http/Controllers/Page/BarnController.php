@@ -99,6 +99,9 @@ class BarnController extends Controller
      */
     public function destroy(Barn $barn)
     {
-        //
+        $barn->delete();
+        if ($barn) :
+            return redirect()->route('barn.index')->with('success', 'Data lumbung berhasil di hapus.');
+        endif;
     }
 }
