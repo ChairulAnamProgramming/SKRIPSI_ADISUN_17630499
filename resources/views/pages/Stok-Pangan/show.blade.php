@@ -11,6 +11,8 @@
                         alt="{{$foodItem->title}}" class="img-fluid" style="height: 400px">
                 </div>
                 <div class="col-12 col-md-7">
+                    @auth
+                    @if (Auth::user()->role ==='admin')
                     <div class="dropdown d-inline">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,6 +24,8 @@
                             <a class="dropdown-item has-icon" href="#"><i class="fas fa-trash"></i> Hapus</a>
                         </div>
                     </div>
+                    @endif
+                    @endauth
                     <br><br>
                     <h6 class="card-title">{{$foodItem->title}}</h6>
                     <h4><strong class="text-primary">Rp.{{number_format($foodItem->price,2,',','.')}}</strong></h4>

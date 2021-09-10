@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('foodItem', FoodItemController::class);
     Route::resource('cart', CartController::class);
     Route::resource('checkout', CheckoutController::class);
+    Route::get('checkout-proses', [CheckoutController::class, 'proses'])->name('checkout.proses');
     Route::get('checkout-admin', [CheckoutController::class, 'admin'])->name('checkout.admin');
     Route::get('barnManager', [BarnManagerController::class, 'index'])->name('barnManager.index');
 

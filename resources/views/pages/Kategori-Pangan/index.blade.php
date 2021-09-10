@@ -4,9 +4,11 @@
 
 
 <div class="container">
-    @foreach ($foodItems as $item)
-    @include('components.FoodItem.index')
-    @endforeach
+    <div class="row">
+        @foreach ($foodItems as $item)
+        @include('components.FoodItem.index')
+        @endforeach
+    </div>
 </div>
 
 @endsection

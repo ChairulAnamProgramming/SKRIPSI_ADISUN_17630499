@@ -20,7 +20,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $data['title'] = 'Halaman Pesanan Anda';
-        $data['carts'] = Cart::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $data['carts'] = Cart::where('user_id', Auth::user()->id)->where('status', '!=', 'proses')->orderBy('id', 'DESC')->get();
         return view('pages.checkout.index', $data);
     }
 
@@ -41,16 +41,31 @@ class CheckoutController extends Controller
         //
     }
 
+    public function proses(Request $request)
+    {
+        // dd($request->checkout);
+        $cart = [];
+        for ($i = 0; $i < count($request->checkout); $i++) :
+            // $cart[$i] = $request->checkout[$i];
+            $cart[$i] = Cart::with(['foodItem', 'user'])->find($request->checkout[$i]);
+        endfor;
+
+        // dd($cart);
+        $data['title'] = 'Halaman Checkout';
+        $data['cart'] = $cart;
+        return view('pages.cart.show', $data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function store(Request $request)
     {
         $request->validate([
-            'cart_id' => 'required|string|max:255',
+            'cart_id' => 'required',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'total_price' => 'required',
@@ -59,29 +74,36 @@ class CheckoutController extends Controller
 
         try {
 
-            $cart_id = Crypt::decrypt($request->cart_id);
             $total_price = Crypt::decrypt($request->total_price);
         } catch (Exception $error) {
             return redirect()->back()->with('danger', 'Pesanan gagal di buat.');
         }
 
         $file = $request->file('file')->store('assets/checkout_bukti_transfer', 'public');
-        $checkout = Checkout::create([
-            'name' => $request->name,
-            'address' => $request->address,
-            'cart_id' => $cart_id,
-            'total_price' => $total_price,
-            'file' => $file,
-        ]);
-
-        if ($checkout) :
-            $cart = Cart::find($cart_id);
-            $cart->update([
+        for ($i = 0; $i < count($request->cart_id); $i++) :
+            $cart_id = Crypt::decrypt($request->cart_id[$i]);
+            Checkout::create([
+                'name' => $request->name,
+                'address' => $request->address,
+                'cart_id' => $cart_id,
+                'total_price' => $total_price,
+                'file' => $file,
+            ]);
+            $cart[$i] = Cart::find($cart_id)->update([
                 'status' => 'berhasil'
             ]);
+        endfor;
 
-            return redirect()->route('cart.index')->with('success', 'Pesanan berhasil di buat.');
-        endif;
+        return redirect()->route('cart.index')->with('success', 'Pesanan berhasil di buat.');
+        // if ($checkout) :
+
+
+        //     // $cart = Cart::find($cart_id);
+        //     // $cart->update([
+        //     //     'status' => 'berhasil'
+        //     // ]);
+
+        // endif;
     }
 
     /**

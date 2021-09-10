@@ -21,7 +21,7 @@
 <body>
 
 
-    <div class="container mt-5 bg-white py-3">
+    <div class="container mt-5 bg-white py-4 px-4">
 
         <div class="row">
             <div class="col-2 text-right">
@@ -39,6 +39,24 @@
         <hr>
         <h6 class="text-center mb-3">{{$title}}</h6>
         @yield('content')
+        <br><br>
+        <table class="ml-auto">
+            <tr>
+                <td>KEPALA DINAS,</td>
+            </tr>
+            <tr style="height: 50px">
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Ir. H. AKHMAD MAWARDI</strong></td>
+            </tr>
+            <tr>
+                <td><small>Pembina Tingkat I</small></td>
+            </tr>
+            <tr>
+                <td><small>NIP. 19651129 199703 1 001</small></td>
+            </tr>
+        </table>
 
     </div>
 
